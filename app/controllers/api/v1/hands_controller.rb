@@ -24,13 +24,13 @@ class Api::V1::HandsController < ApplicationController
       if index == best
         result = {
           card: hand.hand,
-          role: Yetting.card_roles[roles[index]],
+          hand: Yetting.card_roles[roles[index]],
           best: true
         }
       else
         result = {
           card: hand.hand,
-          role: Yetting.card_roles[roles[index]]
+          hand: Yetting.card_roles[roles[index]]
         }
       end
       @results << result

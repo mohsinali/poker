@@ -1,79 +1,75 @@
 class Hand 
   attr_accessor :hand
 
-  def initialize hand
+  def initialize(hand)
     @hand = hand
   end
 
-  def parse_cards cards
+  def parse_cards(cards)
     cards.split(' ')
   end
 
-  def get_suit card
+  def get_suit(card)
     card[0]
   end
 
-  def get_rank card
+  def get_rank(card)
     card[1..-1]
   end
 
   def get_role
     cards = parse_cards(self.hand)
-    role_indentification cards
+    role_indentification(cards)
   end
 
-  def role_indentification cards
+  def role_indentification(cards)
     suits = []
     ranks = []
     role = 9
     cards.each do |card|
      suits << get_suit(card)
+     ranks << get_rank(card).to_i
     end 
+    ranks = ranks.sort
 
-    cards.each do |card|
-      ranks << get_rank(card).to_i
-    end
-    ranks = ranks.sort{|a,b| a<=>b}
-
-    if flash? suits
-      if straight? ranks
+    if flash?(suits)
+      if straight?(ranks)
         role = 1
       else
         role = 4
       end
     else
-      if straight? ranks
+      if straight?(ranks)
         role = 5
       else
-        if four_of_a_kind? ranks
+        if four_of_a_kind?(ranks)
           role = 2
-        elsif full_house? ranks
+        elsif full_house?(ranks)
           role = 3
-        elsif uniq_three? ranks
-          if three_of_a_kind? ranks
+        elsif uniq_three?(ranks)
+          if three_of_a_kind?(ranks)
             role = 6
           else
             role = 7
           end
-        elsif one_pair? ranks
+        elsif one_pair?(ranks)
           role = 8
-        else
-          role = 9
         end
+
       end
     end
     role
   end
 
-  def flash? suits
-    suits.uniq.length==1
+  def flash?(suits)
+    suits.uniq.length == 1
   end 
 
-  def straight? ranks    
-    all_in_sequence? ranks
+  def straight?(ranks)
+    all_in_sequence?(ranks)
   end
 
-  def all_in_sequence? sorted_array
+  def all_in_sequence?(sorted_array)
     flag = false
     sorted_array.each_cons(2) do |x,y|
       if y-x ==1
@@ -88,7 +84,7 @@ class Hand
     flag
   end
 
-  def four_of_a_kind? sorted_array
+  def four_of_a_kind?(sorted_array)
     flag = false
     sorted_array.each_cons(4) do |x|
       if x.uniq.length == 1
@@ -98,15 +94,15 @@ class Hand
     flag
   end
 
-  def full_house? sorted_array
+  def full_house?(sorted_array)
     sorted_array.uniq.length == 2
   end
 
-  def uniq_three? sorted_array
+  def uniq_three?(sorted_array)
     sorted_array.uniq.length ==3
   end
 
-  def three_of_a_kind? sorted_array
+  def three_of_a_kind?(sorted_array)
     flag = false
     sorted_array.each_cons(3) do |x|
       if x.uniq.length == 1
@@ -116,7 +112,7 @@ class Hand
     flag
   end
 
-  def one_pair? sorted_array
+  def one_pair?(sorted_array)
     sorted_array.uniq.length == 4
   end
 
