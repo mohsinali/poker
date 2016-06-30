@@ -21,8 +21,16 @@ h6 {
     font-weight: 700;
 }
 
+.intro-message h1,h3{
+    color: gray;
+}
 .intro-message h3{
-    color: #000;
+    font-weight: 400;
+
+}
+label.invalid{
+    width: 100%;
+    text-align: left;
 }
 .topnav {
     font-size: 14px;
@@ -41,12 +49,15 @@ h6 {
     background: url(http://ironsummitmedia.github.io/startbootstrap-landing-page/img/intro-bg.jpg) no-repeat center center;
     background-size: cover;
 }
-
+.invalid{
+    color: red;
+}
 .intro-message {
     position: relative;
    /* padding-top: 20%;
     padding-bottom: 20%;/
 }
+
 
 .intro-message > h1 {
     margin: 0;

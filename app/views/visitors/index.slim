@@ -22,6 +22,6 @@ a name="about"
     .row
       .col-lg-3
       .col-lg-6
-          = simple_form_for :card,url: '/hands/identify' do |f|
+          = simple_form_for :card,url: '/hands/identify',html: {class: 'cards_form'} do |f|
             = f.input :data,placeholder: "ENTER HAND",label: false
-            = f.button :submit, "GET RESULT"
+            = f.button :submit, "GET RESULT",class: 'submit_cards'
