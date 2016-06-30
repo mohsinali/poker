@@ -1,0 +1,27 @@
+/! Navigation
+nav.navbar.navbar-default.navbar-fixed-top.topnav role="navigation" 
+  .container.topnav
+    /! Brand and toggle get grouped for better mobile display
+    .navbar-header
+      button.navbar-toggle data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    /! Collect the nav links, forms, and other content for toggling
+    /! /.navbar-collapse
+  /! /.container
+/! Header
+a name="about" 
+.intro-header
+  .container
+    .row
+      .col-lg-12
+        .intro-message
+          h1 Poker
+    .row
+      .col-lg-3
+      .col-lg-6
+          = simple_form_for :card,url: '/hands/identify' do |f|
+            = f.input :data,placeholder: "ENTER HAND",label: false
+            = f.button :submit, "GET RESULT"
